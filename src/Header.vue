@@ -100,7 +100,7 @@ export default {
   box-sizing: border-box;
 }
 
-@media (max-width: 450px) {
+@media (max-width: 600px) {
   .sc-header {
     border-radius: 0px;
   }

@@ -142,7 +142,7 @@ export default {
   text-align: left;
 }
 
-@media (max-width: 450px) {
+@media (max-width: 600px) {
   .sc-chat-window {
     width: 100%;
     height: 100%;

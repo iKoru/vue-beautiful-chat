@@ -8,11 +8,11 @@
       <div v-if="message.type !== 'system'" :title="authorName" class="sc-message--avatar" :style="{
         backgroundImage: `url(${chatImageUrl})`
       }" v-tooltip="message.author"></div>
-      <TextMessage v-if="message.type === 'text'" :data="message.data" :messageColors="determineMessageColors()" :messageStyling="messageStyling" />
-      <EmojiMessage v-else-if="message.type === 'emoji'" :data="message.data" />
-      <FileMessage v-else-if="message.type === 'file'" :data="message.data" :messageColors="determineMessageColors()" />
-      <TypingMessage v-else-if="message.type === 'typing'" :messageColors="determineMessageColors()" />
-      <SystemMessage v-else-if="message.type === 'system'" :data="message.data" :messageColors="determineMessageColors()" />
+      <TextMessage v-if="message.type === 'text'" :data="message.data" :messageColors="determineMessageColors()" :messageStyling="messageStyling"/>
+      <EmojiMessage v-else-if="message.type === 'emoji'" :data="message.data"/>
+      <FileMessage v-else-if="message.type === 'file'" :data="message.data" :messageColors="determineMessageColors()"/>
+      <TypingMessage v-else-if="message.type === 'typing'" :messageColors="determineMessageColors()"/>
+      <SystemMessage v-else-if="message.type === 'system'" :data="message.data" :messageColors="determineMessageColors()"/>
     </div>
   </div>
 </template>
@@ -26,10 +26,8 @@ import SystemMessage from './SystemMessage.vue'
 import chatIcon from './assets/chat-icon.svg'
 
 export default {
-  data () {
-    return {
-
-    }
+  data() {
+    return {}
   },
   components: {
     TextMessage,
@@ -60,20 +58,22 @@ export default {
     }
   },
   methods: {
-    sentColorsStyle () {
+    sentColorsStyle() {
       return {
         color: this.colors.sentMessage.text,
         backgroundColor: this.colors.sentMessage.bg
       }
     },
-    receivedColorsStyle () {
+    receivedColorsStyle() {
       return {
         color: this.colors.receivedMessage.text,
         backgroundColor: this.colors.receivedMessage.bg
       }
     },
-    determineMessageColors () {
-      return this.message.author === 'me' ? this.sentColorsStyle() : this.receivedColorsStyle()
+    determineMessageColors() {
+      return this.message.author === 'me'
+        ? this.sentColorsStyle()
+        : this.receivedColorsStyle()
     }
   }
 }
@@ -121,7 +121,7 @@ export default {
   text-align: center;
 }
 
-@media (max-width: 450px) {
+@media (max-width: 600px) {
   .sc-message {
     width: 80%;
   }
@@ -134,7 +134,7 @@ export default {
   font-size: 14px;
   line-height: 1.4;
   white-space: pre-wrap;
-  -webkit-font-smoothing: subpixel-antialiased
+  -webkit-font-smoothing: subpixel-antialiased;
 }
 .sc-message--content.sent .sc-message--text {
   color: white;
@@ -171,7 +171,7 @@ export default {
     border-color: black;
     z-index: 1;
   }
-  &[x-placement^="top"] {
+  &[x-placement^='top'] {
     margin-bottom: 5px;
     .tooltip-arrow {
       border-width: 5px 5px 0 5px;
@@ -184,7 +184,7 @@ export default {
       margin-bottom: 0;
     }
   }
-  &[x-placement^="bottom"] {
+  &[x-placement^='bottom'] {
     margin-top: 5px;
     .tooltip-arrow {
       border-width: 0 5px 5px 5px;
@@ -197,7 +197,7 @@ export default {
       margin-bottom: 0;
     }
   }
-  &[x-placement^="right"] {
+  &[x-placement^='right'] {
     margin-left: 5px;
     .tooltip-arrow {
       border-width: 5px 5px 5px 0;
@@ -210,7 +210,7 @@ export default {
       margin-right: 0;
     }
   }
-  &[x-placement^="left"] {
+  &[x-placement^='left'] {
     margin-right: 5px;
     .tooltip-arrow {
       border-width: 5px 0 5px 5px;
@@ -226,21 +226,21 @@ export default {
   &[aria-hidden='true'] {
     visibility: hidden;
     opacity: 0;
-    transition: opacity .15s, visibility .15s;
+    transition: opacity 0.15s, visibility 0.15s;
   }
   &[aria-hidden='false'] {
     visibility: visible;
     opacity: 1;
-    transition: opacity .15s;
+    transition: opacity 0.15s;
   }
   &.info {
-    $color: rgba(#004499, .9);
+    $color: rgba(#004499, 0.9);
     .tooltip-inner {
       background: $color;
       color: white;
       padding: 24px;
       border-radius: 5px;
-      box-shadow: 0 5px 30px rgba(black, .1);
+      box-shadow: 0 5px 30px rgba(black, 0.1);
     }
     .tooltip-arrow {
       border-color: $color;
@@ -253,7 +253,7 @@ export default {
       color: black;
       padding: 24px;
       border-radius: 5px;
-      box-shadow: 0 5px 30px rgba(black, .1);
+      box-shadow: 0 5px 30px rgba(black, 0.1);
     }
     .popover-arrow {
       border-color: $color;
