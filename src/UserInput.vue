@@ -183,6 +183,14 @@ export default {
   overflow-y: auto;
 }
 
+.sc-user-input .sc-user-input--text{
+  cursor: text;
+}
+
+.sc-user-input.disabled .sc-user-input--text{
+  cursor: default;
+}
+
 .sc-user-input--text:empty:before {
   content: attr(placeholder);
   display: block; /* For Firefox */
@@ -238,12 +246,8 @@ export default {
   z-index: 99999;
   height: 100%;
   opacity: 0;
-  cursor: text;
+  cursor: pointer;
   overflow: hidden;
-}
-
-.sc-user-input--button input.disabled {
-  cursor: default;
 }
 
 .file-container {
