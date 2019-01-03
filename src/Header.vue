@@ -1,7 +1,7 @@
 <template>
   <div class="sc-header" :style="{background: colors.header.bg, color: colors.header.text}">
     <img class="sc-header--img" :src="imageUrl" alt="" v-if="imageUrl" />
-    <div class="sc-header--title" @click="toggleUserList"> {{title}} </div>
+    <div class="sc-header--title ellipsis" @click="toggleUserList"> {{title}} </div>
     <div class="sc-header--close-button" @click="onClose">
       <img src="./assets/close-icon.png" alt="" />
     </div>
