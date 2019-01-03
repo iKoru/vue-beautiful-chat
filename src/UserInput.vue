@@ -1,35 +1,26 @@
 <template>
   <div>
     <Suggestions :suggestions="suggestions" v-on:sendSuggestion="_submitSuggestion" :colors="colors"/>
-    <div v-if="file" class='file-container' :style="{backgroundColor: colors.userInput.text, color: colors.userInput.bg}">
-      <span class='icon-file-message'><img src="./assets/file.svg" alt='genericFileIcon' height="15" /></span>
+    <div v-if="file" class="file-container" :style="{backgroundColor: colors.userInput.text, color: colors.userInput.bg}">
+      <span class="icon-file-message">
+        <img src="./assets/file.svg" alt="genericFileIcon" height="15">
+      </span>
       {{file.name}}
-      <span class='delete-file-message' @click="cancelFile()" ><img src="./assets/close.svg" alt='close icon' height="10" title='Remove the file' /></span>
+      <span class="delete-file-message" @click="cancelFile()">
+        <img src="./assets/close.svg" alt="close icon" height="10" title="Remove the file">
+      </span>
     </div>
     <form class="sc-user-input" :class="{active: inputActive, disabled: disabled}" :style="{background: colors.userInput.bg}">
-      <div
-        role="button"
-        tabIndex="0"
-        @focus="setInputActive(true)"
-        @blur="setInputActive(false)"
-        @keydown="handleKey"
-        :contentEditable="!disabled"
-        :placeholder="placeholder"
-        class="sc-user-input--text"
-        ref="userInput"
-        :style="{color: colors.userInput.text}"
-      >
-      </div>
+      <div role="button" tabindex="0" @focus="setInputActive(true)" @blur="setInputActive(false)" @keydown="handleKey" :contentEditable="!disabled" :placeholder="placeholder" class="sc-user-input--text" ref="userInput" :style="{color: colors.userInput.text, width:`calc(100% - ${showEmoji?'30px':'0px'} - ${showFile?'30px':'0px'} - 50px)`}"></div>
       <div class="sc-user-input--buttons">
-        <div class="sc-user-input--button"></div>
         <div v-if="showEmoji" class="sc-user-input--button">
-          <EmojiIcon :onEmojiPicked="_handleEmojiPicked" :color="colors.userInput.text" />
+          <EmojiIcon :onEmojiPicked="_handleEmojiPicked" :color="colors.userInput.text"/>
         </div>
         <div v-if="showFile" class="sc-user-input--button">
-          <FileIcons :onChange="_handleFileSubmit" :color="colors.userInput.text" />
+          <FileIcons :onChange="_handleFileSubmit" :color="colors.userInput.text"/>
         </div>
         <div class="sc-user-input--button">
-          <SendIcon :onClick="_submitText" :color="colors.userInput.text" />
+          <SendIcon :onClick="_submitText" :color="colors.userInput.text"/>
         </div>
       </div>
     </form>
@@ -75,35 +66,34 @@ export default {
       type: Object,
       required: true
     },
-    disabled:{
-      type:Boolean,
-      default:false
+    disabled: {
+      type: Boolean,
+      default: false
     }
   },
-  data () {
+  data() {
     return {
       file: null,
       inputActive: false
     }
   },
   methods: {
-    cancelFile () {
+    cancelFile() {
       this.file = null
     },
-    setInputActive (onoff) {
+    setInputActive(onoff) {
       this.inputActive = onoff
     },
-    handleKey (event) {
-
+    handleKey(event) {
       if (event.keyCode === 13 && !event.shiftKey) {
         this._submitText(event)
         event.preventDefault()
       }
     },
-    _submitSuggestion (suggestion) {
-      this.onSubmit({author: 'me', type: 'text', data: { text: suggestion }})
+    _submitSuggestion(suggestion) {
+      this.onSubmit({ author: 'me', type: 'text', data: { text: suggestion } })
     },
-    _submitText (event) {
+    _submitText(event) {
       const text = this.$refs.userInput.textContent
       const file = this.file
       if (file) {
@@ -134,14 +124,14 @@ export default {
         }
       }
     },
-    _handleEmojiPicked (emoji) {
+    _handleEmojiPicked(emoji) {
       this.onSubmit({
         author: 'me',
         type: 'emoji',
         data: { emoji }
       })
     },
-    _handleFileSubmit (file) {
+    _handleFileSubmit(file) {
       this.file = file
     }
   }
@@ -162,7 +152,6 @@ export default {
 }
 
 .sc-user-input--text {
-  width: 300px;
   resize: none;
   border: none;
   outline: none;
@@ -183,11 +172,11 @@ export default {
   overflow-y: auto;
 }
 
-.sc-user-input .sc-user-input--text{
+.sc-user-input .sc-user-input--text {
   cursor: text;
 }
 
-.sc-user-input.disabled .sc-user-input--text{
+.sc-user-input.disabled .sc-user-input--text {
   cursor: default;
 }
 
@@ -200,9 +189,8 @@ export default {
 }
 
 .sc-user-input--buttons {
-  width: 100px;
   position: absolute;
-  right: 30px;
+  right: 10px;
   height: 100%;
   display: flex;
 }
@@ -219,12 +207,6 @@ export default {
   display: flex;
   flex-direction: column;
   justify-content: center;
-}
-
-.sc-user-input.active {
-  box-shadow: none;
-  background-color: white;
-  box-shadow: 0px -5px 20px 0px rgba(150, 165, 190, 0.2);
 }
 
 .sc-user-input--button label {
