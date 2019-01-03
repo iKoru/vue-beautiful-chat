@@ -1,29 +1,11 @@
 <template>
   <div>
     <div class="sc-launcher" v-if="showLauncher" :class="{opened: isOpen}" @click.prevent="isOpen ? close() : open()" :style="{backgroundColor: colors.launcher.bg}">
-      <div v-if="newMessagesCount > 0 && !isOpen" class="sc-new-messsages-count">
-        {{newMessagesCount}}
-      </div>
-      <img class="sc-open-icon" src="./assets/close-icon.png" />
-      <img class="sc-closed-icon" src="./assets/logo-no-bg.svg" />
+      <div v-if="newMessagesCount > 0 && !isOpen" class="sc-new-messsages-count">{{newMessagesCount}}</div>
+      <img class="sc-open-icon" src="./assets/close-icon.png">
+      <img class="sc-closed-icon" src="./assets/logo-no-bg.svg">
     </div>
-    <ChatWindow
-      :messageList="messageList"
-      :onUserInputSubmit="onMessageWasSent"
-      :participants="participants"
-      :title="chatWindowTitle"
-      :titleImageUrl="titleImageUrl"
-      :isOpen="isOpen"
-      :onClose="close"
-      :showEmoji="showEmoji"
-      :showFile="showFile"
-      :placeholder="placeholder"
-      :showTypingIndicator="showTypingIndicator"
-      :colors="colors"
-      :alwaysScrollToBottom="alwaysScrollToBottom"
-      :messageStyling="messageStyling"
-      :disabled="disabled"
-    />
+    <ChatWindow :messageList="messageList" :onUserInputSubmit="onMessageWasSent" :participants="participants" :title="chatWindowTitle" :titleImageUrl="titleImageUrl" :isOpen="isOpen" :onClose="close" :showEmoji="showEmoji" :showFile="showFile" :placeholder="placeholder" :showTypingIndicator="showTypingIndicator" :colors="colors" :alwaysScrollToBottom="alwaysScrollToBottom" :messageStyling="messageStyling" :disabled="disabled" :hasUserList="hasUserList"/>
   </div>
 </template>
 <script>
@@ -59,7 +41,7 @@ export default {
       type: Array,
       required: true
     },
-    disabled:{
+    disabled: {
       type: Boolean,
       default: false
     },
@@ -96,18 +78,22 @@ export default {
       required: false,
       validator: c =>
         'header' in c &&
-        'bg' in c.header && 'text' in c.header &&
+        'bg' in c.header &&
+        'text' in c.header &&
         'launcher' in c &&
         'bg' in c.launcher &&
         'messageList' in c &&
         'bg' in c.messageList &&
         'sentMessage' in c &&
-        'bg' in c.sentMessage && 'text' in c.sentMessage &&
+        'bg' in c.sentMessage &&
+        'text' in c.sentMessage &&
         'receivedMessage' in c &&
-        'bg' in c.receivedMessage && 'text' in c.receivedMessage &&
+        'bg' in c.receivedMessage &&
+        'text' in c.receivedMessage &&
         'userInput' in c &&
-        'bg' in c.userInput && 'text' in c.userInput,
-      default: function () {
+        'bg' in c.userInput &&
+        'text' in c.userInput,
+      default: function() {
         return {
           header: {
             bg: '#4e8cff',
@@ -141,10 +127,14 @@ export default {
     messageStyling: {
       type: Boolean,
       default: () => false
+    },
+    hasUserList: {
+      type: Boolean,
+      default: true
     }
   },
   computed: {
-    chatWindowTitle () {
+    chatWindowTitle() {
       if (this.title !== '') {
         return this.title
       }
@@ -181,7 +171,7 @@ export default {
   position: relative;
   display: block;
   width: 60px;
-  height: 60px;  
+  height: 60px;
   border-radius: 50%;
   transition: box-shadow 0.2s ease-in-out;
 }
@@ -223,7 +213,7 @@ export default {
 }
 
 .sc-launcher:hover {
-  box-shadow: 0 0px 27px 1.5px rgba(0,0,0,0.2);
+  box-shadow: 0 0px 27px 1.5px rgba(0, 0, 0, 0.2);
 }
 
 .sc-new-messsages-count {
@@ -234,7 +224,7 @@ export default {
   justify-content: center;
   flex-direction: column;
   border-radius: 50%;
-	width: 22px;
+  width: 22px;
   height: 22px;
   background: #ff4646;
   color: white;
