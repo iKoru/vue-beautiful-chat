@@ -5,9 +5,9 @@
         received: message.author !== 'me' && message.type !== 'system',
         system: message.type === 'system'
       }">
-      <div v-if="message.type !== 'system' && chatImageUrl" :title="authorName" class="sc-message--avatar" :style="{
-        backgroundImage: `url(${chatImageUrl})`
-      }" v-tooltip="message.author"></div>
+      <div v-if="message.type !== 'system' && chatImageUrl" :title="authorName" class="sc-message--avatar" v-tooltip="message.author">
+        <img :src="chatImageUrl">
+      </div>
       <TextMessage v-if="message.type === 'text'" :data="message.data" :messageColors="determineMessageColors()" :messageStyling="messageStyling"/>
       <EmojiMessage v-else-if="message.type === 'emoji'" :data="message.data"/>
       <FileMessage v-else-if="message.type === 'file'" :data="message.data" :messageColors="determineMessageColors()"/>
