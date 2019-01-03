@@ -1,7 +1,7 @@
 <template>
   <div class="sc-message--text" :style="messageColors">
-    <p v-html="messageText"></p>
-    <p v-if="data.meta" class='sc-message--meta' :style="{color: messageColors.color}">{{data.meta}}</p>
+    <p clsss="sc-message-data-text" v-html="messageText"></p>
+    <p v-if="data.meta" class="sc-message--meta" :style="{color: messageColors.color}">{{data.meta}}</p>
   </div>
 </template>
 
@@ -26,7 +26,7 @@ export default {
     }
   },
   computed: {
-    messageText () {
+    messageText() {
       const escaped = escapeGoat.escape(this.data.text)
 
       return Autolinker.link(this.messageStyling ? fmt(escaped) : escaped, {
@@ -39,6 +39,9 @@ export default {
 </script>
 
 <style scoped>
+.sc-message-data-text {
+  margin-bottom: 5px;
+}
 a.chatLink {
   color: inherit !important;
 }
