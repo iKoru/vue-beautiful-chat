@@ -32,7 +32,7 @@ export default {
   },
   methods: {
     toggleUserList() {
-      if (hasUserList) {
+      if (this.hasUserList) {
         this.inUserList = !this.inUserList
         this.$emit('userList', this.inUserList)
       }

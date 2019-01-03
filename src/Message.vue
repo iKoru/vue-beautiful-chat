@@ -5,7 +5,7 @@
         received: message.author !== 'me' && message.type !== 'system',
         system: message.type === 'system'
       }">
-      <div v-if="message.type !== 'system'" :title="authorName" class="sc-message--avatar" :style="{
+      <div v-if="message.type !== 'system' && chatImageUrl" :title="authorName" class="sc-message--avatar" :style="{
         backgroundImage: `url(${chatImageUrl})`
       }" v-tooltip="message.author"></div>
       <TextMessage v-if="message.type === 'text'" :data="message.data" :messageColors="determineMessageColors()" :messageStyling="messageStyling"/>
@@ -119,6 +119,15 @@ export default {
   margin-bottom: 0px;
   color: white;
   text-align: center;
+}
+
+.sc-message--content.sent .sc-message--meta,
+.sc-message--content.sent .sc-message--text {
+  text-align: right;
+}
+.sc-message--content.received .sc-message--meta,
+.sc-message--content.received .sc-message--text {
+  text-align: left;
 }
 
 @media (max-width: 600px) {
