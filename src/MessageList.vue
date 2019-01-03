@@ -84,5 +84,7 @@ export default {
   overflow-y: auto;
   background-size: 100%;
   padding-top: 10px;
+  padding-left: 15px;
+  padding-right: 10px;
 }
 </style>

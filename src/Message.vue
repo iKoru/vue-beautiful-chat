@@ -80,8 +80,7 @@ export default {
 </script>
 <style lang="scss">
 .sc-message {
-  width: 300px;
-  margin: auto;
+  width: 100%;
   padding-bottom: 10px;
   display: flex;
 }
@@ -132,7 +131,8 @@ export default {
 
 @media (max-width: 600px) {
   .sc-message {
-    width: 80%;
+    max-width: 400px;
+    margin: auto;
   }
 }
 
