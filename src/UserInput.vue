@@ -6,7 +6,7 @@
       {{file.name}}
       <span class='delete-file-message' @click="cancelFile()" ><img src="./assets/close.svg" alt='close icon' height="10" title='Remove the file' /></span>
     </div>
-    <form class="sc-user-input" :class="{active: inputActive}" :style="{background: colors.userInput.bg}">
+    <form class="sc-user-input" :class="{active: inputActive, disabled: disabled}" :style="{background: colors.userInput.bg}">
       <div
         role="button"
         tabIndex="0"
