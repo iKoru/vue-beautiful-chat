@@ -28,12 +28,12 @@ export default {
     }
   },
   methods: {
-    toggleUserList() {
+    toggleUserList () {
       this.inUserList = !this.inUserList
-      this.$emit("userList", this.inUserList)
+      this.$emit('userList', this.inUserList)
     }
   },
-  data() {
+  data () {
     return {
       inUserList: false
     }

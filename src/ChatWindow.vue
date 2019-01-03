@@ -102,23 +102,23 @@ export default {
       required: true
     }
   },
-  data() {
+  data () {
     return {
       showUserList: false
     }
   },
   computed: {
-    messages() {
+    messages () {
       let messages = this.messageList
 
       return messages
     }
   },
   methods: {
-    handleUserListToggle(showUserList) {
+    handleUserListToggle (showUserList) {
       this.showUserList = showUserList
     },
-    getSuggestions(){
+    getSuggestions () {
       return this.messages.length > 0 ? this.messages[this.messages.length - 1].suggestions : []
     }
   }

@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="sc-launcher" :class="{opened: isOpen}" @click.prevent="isOpen ? close() : open()" :style="{backgroundColor: colors.launcher.bg}">
+    <div class="sc-launcher" v-if="showLauncher" :class="{opened: isOpen}" @click.prevent="isOpen ? close() : open()" :style="{backgroundColor: colors.launcher.bg}">
       <div v-if="newMessagesCount > 0 && !isOpen" class="sc-new-messsages-count">
         {{newMessagesCount}}
       </div>
@@ -30,6 +30,10 @@ import ChatWindow from './ChatWindow.vue'
 
 export default {
   props: {
+    showLauncher: {
+      type: Boolean,
+      default: true
+    },
     showEmoji: {
       type: Boolean,
       default: false
@@ -85,19 +89,19 @@ export default {
     colors: {
       type: Object,
       required: false,
-      validator: c => 
-        'header' in c
-        && 'bg' in c.header && 'text' in c.header
-        && 'launcher' in c
-        && 'bg' in c.launcher
-        && 'messageList' in c
-        && 'bg' in c.messageList
-        && 'sentMessage' in c
-        && 'bg' in c.sentMessage && 'text' in c.sentMessage
-        && 'receivedMessage' in c
-        && 'bg' in c.receivedMessage && 'text' in c.receivedMessage
-        && 'userInput' in c
-        && 'bg' in c.userInput && 'text' in c.userInput,
+      validator: c =>
+        'header' in c &&
+        'bg' in c.header && 'text' in c.header &&
+        'launcher' in c &&
+        'bg' in c.launcher &&
+        'messageList' in c &&
+        'bg' in c.messageList &&
+        'sentMessage' in c &&
+        'bg' in c.sentMessage && 'text' in c.sentMessage &&
+        'receivedMessage' in c &&
+        'bg' in c.receivedMessage && 'text' in c.receivedMessage &&
+        'userInput' in c &&
+        'bg' in c.userInput && 'text' in c.userInput,
       default: function () {
         return {
           header: {
@@ -135,7 +139,7 @@ export default {
     }
   },
   computed: {
-    chatWindowTitle() {
+    chatWindowTitle () {
       if (this.title !== '') {
         return this.title
       }
