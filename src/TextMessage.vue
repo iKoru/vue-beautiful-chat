@@ -1,6 +1,6 @@
 <template>
   <div class="sc-message--text" :style="messageColors">
-    <p clsss="sc-message-data-text" v-html="messageText"></p>
+    <p class="sc-message-data-text" v-html="messageText"></p>
     <p v-if="data.meta" class="sc-message--meta" :style="{color: messageColors.color}">{{data.meta}}</p>
   </div>
 </template>
