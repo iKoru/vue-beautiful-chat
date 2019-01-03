@@ -13,7 +13,7 @@
         @focus="setInputActive(true)"
         @blur="setInputActive(false)"
         @keydown="handleKey"
-        contentEditable="true"
+        :contentEditable="!disabled"
         :placeholder="placeholder"
         class="sc-user-input--text"
         ref="userInput"
@@ -74,6 +74,10 @@ export default {
     colors: {
       type: Object,
       required: true
+    },
+    disabled:{
+      type:Boolean,
+      default:false
     }
   },
   data () {
@@ -90,6 +94,7 @@ export default {
       this.inputActive = onoff
     },
     handleKey (event) {
+
       if (event.keyCode === 13 && !event.shiftKey) {
         this._submitText(event)
         event.preventDefault()
@@ -233,8 +238,12 @@ export default {
   z-index: 99999;
   height: 100%;
   opacity: 0;
-  cursor: pointer;
+  cursor: text;
   overflow: hidden;
+}
+
+.sc-user-input--button input.disabled {
+  cursor: default;
 }
 
 .file-container {

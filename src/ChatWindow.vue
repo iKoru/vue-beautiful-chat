@@ -27,6 +27,7 @@
       :suggestions="getSuggestions()"
       :showFile="showFile"
       :placeholder="placeholder"
+      :disabled="disabled"
       :colors="colors" />
   </div>
 </template>
@@ -64,6 +65,10 @@ export default {
     titleImageUrl: {
       type: String,
       default: ''
+    },
+    disabled:{
+      type: Boolean,
+      default: false
     },
     onUserInputSubmit: {
       type: Function,

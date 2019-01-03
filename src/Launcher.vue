@@ -22,6 +22,7 @@
       :colors="colors"
       :alwaysScrollToBottom="alwaysScrollToBottom"
       :messageStyling="messageStyling"
+      :disabled="disabled"
     />
   </div>
 </template>
@@ -57,6 +58,10 @@ export default {
     participants: {
       type: Array,
       required: true
+    },
+    disabled:{
+      type: Boolean,
+      default: false
     },
     title: {
       type: String,
