@@ -5,7 +5,7 @@
       <img class="sc-open-icon" src="./assets/close-icon.png">
       <img class="sc-closed-icon" src="./assets/logo-no-bg.svg">
     </div>
-    <ChatWindow :messageList="messageList" :loadPreviousMessages="loadPreviousMessages" :onUserInputSubmit="onMessageWasSent" :participants="participants" :title="chatWindowTitle" :titleImageUrl="titleImageUrl" :isOpen="isOpen" :onClose="close" :showEmoji="showEmoji" :showFile="showFile" :placeholder="placeholder" :showTypingIndicator="showTypingIndicator" :colors="colors" :alwaysScrollToBottom="alwaysScrollToBottom" :messageStyling="messageStyling" :disabled="disabled" :hasUserList="hasUserList"/>
+    <ChatWindow :messageList="messageList" :loadPreviousMessages="loadPreviousMessages" :loadNewMessages="loadNewMessages" :loading="loading" :onUserInputSubmit="onMessageWasSent" :participants="participants" :title="chatWindowTitle" :titleImageUrl="titleImageUrl" :isOpen="isOpen" :onClose="close" :showEmoji="showEmoji" :showFile="showFile" :placeholder="placeholder" :showTypingIndicator="showTypingIndicator" :colors="colors" :alwaysScrollToBottom="alwaysScrollToBottom" :messageStyling="messageStyling" :disabled="disabled" :hasUserList="hasUserList"/>
   </div>
 </template>
 <script>
@@ -60,6 +60,14 @@ export default {
     loadPreviousMessages:{
       type: Function,
       default: () => []
+    },
+    loadNewMessages:{
+      type:Function,
+      default: () => []
+    },
+    loading:{
+      type:Boolean,
+      default:false
     },
     messageList: {
       type: Array,

@@ -1,6 +1,6 @@
 <template>
   <div class="sc-chat-window elevation-1" :class="{opened: isOpen, closed: !isOpen}">
-    <Header :title="title" :imageUrl="titleImageUrl" :onClose="onClose" :colors="colors" :hasUserList="hasUserList" @userList="handleUserListToggle"/>
+    <Header :title="title" :imageUrl="titleImageUrl" :onClose="onClose" :loading="loading" :colors="colors" :hasUserList="hasUserList" @userList="handleUserListToggle" :loadNewMessages="loadNewMessages"/>
     <UserList v-if="hasUserList && showUserList" :participants="participants"/>
     <MessageList v-if="!showUserList" :messages="messages" :loadPreviousMessages="loadPreviousMessages" :participants="participants" :showTypingIndicator="showTypingIndicator" :colors="colors" :alwaysScrollToBottom="alwaysScrollToBottom" :messageStyling="messageStyling"/>
     <UserInput v-if="!showUserList" :showEmoji="showEmoji" :onSubmit="onUserInputSubmit" :suggestions="getSuggestions()" :showFile="showFile" :placeholder="placeholder" :disabled="disabled" :colors="colors"/>
@@ -88,6 +88,14 @@ export default {
     loadPreviousMessages:{
       type:Function,
       default: ()=> []
+    },
+    loadNewMessages:{
+      type:Function,
+      default: () => []
+    },
+    loading:{
+      type:Boolean,
+      default: false
     }
   },
   data() {

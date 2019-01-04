@@ -1,7 +1,7 @@
 <template>
   <div class="sc-header" :style="{background: colors.header.bg, color: colors.header.text}">
     <img class="sc-header--img" :src="imageUrl" alt v-if="imageUrl">
-    <div :class="{'sc-header--title':true, 'ellipsis':true, 'has-user-list':hasUserList}" @click="toggleUserList">{{title}}</div>
+    <div :class="{'sc-header--title':true, 'ellipsis':true, 'has-user-list':hasUserList}" @click="toggleUserList">{{title}}<br/><small>이 채팅방은 실시간으로 반영되지 않습니다. <span @click="loadNewMessages" v-if="!loading">새로고침</span><i v-else aria-hidden="true" class="v-icon material-icons theme--light">refresh</i></small></div>
     <div class="sc-header--close-button" @click="onClose">
       <img src="./assets/close-icon.png" alt>
     </div>
@@ -28,6 +28,14 @@ export default {
     hasUserList: {
       type: Boolean,
       default: true
+    },
+    loadNewMessages:{
+      type:Function,
+      default: () => []
+    },
+    loading:{
+      type: Boolean,
+      default: false
     }
   },
   methods: {
