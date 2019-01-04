@@ -2,7 +2,7 @@
   <div class="sc-header" :style="{background: colors.header.bg, color: colors.header.text}">
     <img class="sc-header--img" :src="imageUrl" alt v-if="imageUrl">
     <div :class="{'sc-header--title':true, 'ellipsis':true, 'has-user-list':hasUserList}" @click="toggleUserList">{{title}}<br/><small>이 채팅방은 실시간으로 반영되지 않습니다. <span @click="loadNewMessages" v-if="!loading" class="cursor-pointer">새로고침</span>
-    <div v-else role="progressbar" aria-valuemin="0" aria-valuemax="100" class="v-progress-circular v-progress-circular--indeterminate" style="height: 23px; width: 23px;"><svg xmlns="http://www.w3.org/2000/svg" viewBox="21.904761904761905 21.904761904761905 43.80952380952381 43.80952380952381" style="transform: rotate(0deg);"><circle fill="transparent" cx="43.80952380952381" cy="43.80952380952381" r="20" stroke-width="3.8095238095238093" stroke-dasharray="125.664" stroke-dashoffset="125.66370614359172px" class="v-progress-circular__overlay"></circle></svg><div class="v-progress-circular__info"></div></div>
+    <div v-else role="progressbar" aria-valuemin="0" aria-valuemax="100" class="v-progress-circular v-progress-circular--indeterminate" style="height: 15px; width: 15px;"><svg xmlns="http://www.w3.org/2000/svg" viewBox="21.904761904761905 21.904761904761905 43.80952380952381 43.80952380952381" style="transform: rotate(0deg);"><circle fill="transparent" cx="43.80952380952381" cy="43.80952380952381" r="20" stroke-width="3.8095238095238093" stroke-dasharray="125.664" stroke-dashoffset="125.66370614359172px" class="v-progress-circular__overlay"></circle></svg><div class="v-progress-circular__info"></div></div>
     </small></div>
     <div class="sc-header--close-button" @click="onClose">
       <img src="./assets/close-icon.png" alt>
