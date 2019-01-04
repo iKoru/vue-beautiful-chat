@@ -65,7 +65,7 @@ export default {
       if(this.$refs.scrollList.scrollTop === 0){
         this.scrolls = setTimeout(() => {
           this.loadPreviousMessages();
-        }, 1000)
+        }, 500)
       }
     },
     profile(author) {
