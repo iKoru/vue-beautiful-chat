@@ -85,7 +85,7 @@ export default {
   height: 40px;
   box-sizing: border-box;
   cursor: pointer;
-  border-radius: 5px;
+  border-radius: 50%;
   margin-left: auto;
 }
 

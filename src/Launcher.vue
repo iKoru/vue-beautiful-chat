@@ -5,7 +5,7 @@
       <img class="sc-open-icon" src="./assets/close-icon.png">
       <img class="sc-closed-icon" src="./assets/logo-no-bg.svg">
     </div>
-    <ChatWindow :messageList="messageList" :onUserInputSubmit="onMessageWasSent" :participants="participants" :title="chatWindowTitle" :titleImageUrl="titleImageUrl" :isOpen="isOpen" :onClose="close" :showEmoji="showEmoji" :showFile="showFile" :placeholder="placeholder" :showTypingIndicator="showTypingIndicator" :colors="colors" :alwaysScrollToBottom="alwaysScrollToBottom" :messageStyling="messageStyling" :disabled="disabled" :hasUserList="hasUserList"/>
+    <ChatWindow :messageList="messageList" :loadPreviousMessages="loadPreviousMessages" :onUserInputSubmit="onMessageWasSent" :participants="participants" :title="chatWindowTitle" :titleImageUrl="titleImageUrl" :isOpen="isOpen" :onClose="close" :showEmoji="showEmoji" :showFile="showFile" :placeholder="placeholder" :showTypingIndicator="showTypingIndicator" :colors="colors" :alwaysScrollToBottom="alwaysScrollToBottom" :messageStyling="messageStyling" :disabled="disabled" :hasUserList="hasUserList"/>
   </div>
 </template>
 <script>
@@ -56,6 +56,10 @@ export default {
     onMessageWasSent: {
       type: Function,
       required: true
+    },
+    loadPreviousMessages:{
+      type: Function,
+      default: () => []
     },
     messageList: {
       type: Array,

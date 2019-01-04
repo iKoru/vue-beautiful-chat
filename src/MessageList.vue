@@ -1,5 +1,5 @@
 <template>
-  <div class="sc-message-list" ref="scrollList" :style="{backgroundColor: colors.messageList.bg}">
+  <div class="sc-message-list" ref="scrollList" :style="{backgroundColor: colors.messageList.bg}" @scroll="scrollMessageList">
     <Message v-for="(message, idx) in messages" :message="message" :chatImageUrl="chatImageUrl(message.author)" :authorName="authorName(message.author)" :key="idx" :colors="colors" :messageStyling="messageStyling"/>
     <Message v-show="showTypingIndicator !== ''" :message="{author: showTypingIndicator, type: 'typing'}" :chatImageUrl="chatImageUrl(showTypingIndicator)" :colors="colors" :messageStyling="messageStyling"/>
   </div>
@@ -36,6 +36,15 @@ export default {
     messageStyling: {
       type: Boolean,
       required: true
+    },
+    loadPreviousMessages:{
+      type: Function,
+      default: () => []
+    }
+  },
+  data(){
+    return {
+      scrolls:null
     }
   },
   methods: {
@@ -48,6 +57,16 @@ export default {
         this.$refs.scrollList.scrollTop >
           this.$refs.scrollList.scrollHeight - 600
       )
+    },
+    scrollMessageList(){
+      if(this.scrolls !== null){
+        clearTimeout(this.scrolls);
+      }
+      if(this.$refs.scrollList.scrollTop === 0){
+        this.scrolls = setTimeout(() => {
+          this.loadPreviousMessages();
+        }, 1000)
+      }
     },
     profile(author) {
       const profile = this.participants.find(profile => profile.id === author)

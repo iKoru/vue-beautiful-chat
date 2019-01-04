@@ -2,7 +2,7 @@
   <div class="sc-chat-window elevation-1" :class="{opened: isOpen, closed: !isOpen}">
     <Header :title="title" :imageUrl="titleImageUrl" :onClose="onClose" :colors="colors" :hasUserList="hasUserList" @userList="handleUserListToggle"/>
     <UserList v-if="hasUserList && showUserList" :participants="participants"/>
-    <MessageList v-if="!showUserList" :messages="messages" :participants="participants" :showTypingIndicator="showTypingIndicator" :colors="colors" :alwaysScrollToBottom="alwaysScrollToBottom" :messageStyling="messageStyling"/>
+    <MessageList v-if="!showUserList" :messages="messages" :loadPreviousMessages="loadPreviousMessages" :participants="participants" :showTypingIndicator="showTypingIndicator" :colors="colors" :alwaysScrollToBottom="alwaysScrollToBottom" :messageStyling="messageStyling"/>
     <UserInput v-if="!showUserList" :showEmoji="showEmoji" :onSubmit="onUserInputSubmit" :suggestions="getSuggestions()" :showFile="showFile" :placeholder="placeholder" :disabled="disabled" :colors="colors"/>
   </div>
 </template>
@@ -84,6 +84,10 @@ export default {
     messageStyling: {
       type: Boolean,
       required: true
+    },
+    loadPreviousMessages:{
+      type:Function,
+      default: ()=> []
     }
   },
   data() {
