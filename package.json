@@ -1,10 +1,10 @@
 {
   "name": "vue-beautiful-chat",
-  "version": "2.2.0",
+  "version": "2.2.1",
   "description": "A simple and beautiful Vue chat component backend agnostic.",
   "main": "./src/index.js",
-  "repository": "https://github.com/mattmezza/vue-beautiful-chat.git",
-  "author": "Matteo Merola <mattmezza@gmail.com>",
+  "repository": "https://github.com/iKoru/vue-beautiful-chat.git",
+  "author": "iKoru <glassonyou@gmail.com>",
   "license": "MIT",
   "keywords": [
     "vue",
@@ -54,7 +54,7 @@
     "prepublishOnly": "npm run build"
   },
   "bugs": {
-    "url": "https://github.com/mattmezza/vue-beautiful-chat/issues"
+    "url": "https://github.com/iKoru/vue-beautiful-chat/issues"
   },
   "dependencies": {
     "autolinker": "^1.7.1",
